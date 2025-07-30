@@ -1,2 +1,2 @@
 # ecommerceApp
-Ecommerce Application using MERN Technology
+E-commerce Application using MERN Technology

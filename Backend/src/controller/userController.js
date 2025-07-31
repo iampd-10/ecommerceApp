@@ -94,21 +94,22 @@ export const loginUser = async (req, res) => {
         message: "Please verify your email before logging in",
       });
     }
-    //create a access token and refresh token
+
+    await sessionSchema.deleteMany({ userId: user._id });
+
     const accessToken = jwt.sign({ id: user._id }, process.env.secretKey, {
       expiresIn: "1h",
     });
-    
+
     const refreshToken = jwt.sign({ id: user._id }, process.env.secretKey, {
       expiresIn: "7d",
     });
 
-    //save the refresh token in the session collection
     const session = new sessionSchema({
-        userId: user._id,
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-        });
+      userId: user._id,
+      accessToken,
+      refreshToken,
+    });
     await session.save();
 
     user.isLoggedIn = true;
@@ -124,8 +125,8 @@ export const loginUser = async (req, res) => {
           role: user.role,
           isVerified: user.isVerified,
           profilePicture: user.profilePicture,
-          accessToken: accessToken,
-          refreshToken: refreshToken,
+          accessToken,
+          refreshToken,
         },
       },
     });
@@ -133,3 +134,39 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ message: "Error logging in", error: error.message });
   }
 };
+
+export const logoutUser = async (req, res) => {
+ const {email} = req.body;
+
+  if (!email) {
+    return res.status(400).json({ message: "Email is required" });
+  }
+
+  try {
+    const user = await userSchema.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    if (!user.isLoggedIn) {
+      return res.status(400).json({ message: "User is not logged in" });
+    }
+
+    await sessionSchema.deleteMany({ userId: user._id });
+
+    user.isLoggedIn = false;
+    await user.save();
+
+    res.status(200).json({ message: "Logout successful" ,
+      data: {
+        fullName: user.fullName,
+        userName: user.userName,
+        email: user.email,
+        role: user.role,
+        isVerified: user.isVerified,
+        profilePicture: user.profilePicture,
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error logging out", error: error.message });
+  }
+}

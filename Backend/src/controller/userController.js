@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { verifyEmail } from "../verifyEmail/verifyEmail.js";
+import { access } from "fs";
 
 dotenv.config();
 
@@ -52,6 +53,7 @@ export const registerUser = async (req, res) => {
 
     res.status(201).json({
       message: "User registered successfully",
+      
       user: {
         data: {
           fullName: newUser.fullName,
@@ -98,11 +100,11 @@ export const loginUser = async (req, res) => {
     await sessionSchema.deleteMany({ userId: user._id });
 
     const accessToken = jwt.sign({ id: user._id }, process.env.secretKey, {
-      expiresIn: "1h",
+      expiresIn: "10days",
     });
 
     const refreshToken = jwt.sign({ id: user._id }, process.env.secretKey, {
-      expiresIn: "7d",
+      expiresIn: "30days",
     });
 
     const session = new sessionSchema({
@@ -116,7 +118,10 @@ export const loginUser = async (req, res) => {
     await user.save();
 
     res.status(200).json({
+      success: true,
       message: "Login successful",
+      accessToken: accessToken,
+      refreshToken: refreshToken,
       user: {
         data: {
           fullName: user.fullName,
@@ -156,15 +161,11 @@ export const logoutUser = async (req, res) => {
     user.isLoggedIn = false;
     await user.save();
 
-    res.status(200).json({ message: "Logout successful" ,
-      data: {
-        fullName: user.fullName,
-        userName: user.userName,
-        email: user.email,
-        role: user.role,
-        isVerified: user.isVerified,
-        profilePicture: user.profilePicture,
-      }
+    res.status(200).json({
+      success: true,
+       message: "Logout successful" ,
+      
+      data: user,
     });
   } catch (error) {
     res.status(500).json({ message: "Error logging out", error: error.message });

@@ -34,7 +34,7 @@ You are just one step away from accessing your account.
 
 We’re excited to have you onboard! To complete your registration, please verify your email address by clicking the link below:
 
-🔗 http://localhost:8001/user/verify/${token}
+🔗 http://localhost:5173/user/verify/${token}
 
 Your username is: **${userName}**
 Your temporary login password is: **${password}**  

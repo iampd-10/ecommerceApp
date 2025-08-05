@@ -3,42 +3,41 @@ import productSchema from '../models/productSchema.js';
 // import userSchema from '../models/userSchema.js';
 
 export const createProduct = async (req, res) => {
-    try {
-        const { pname, description, price, category, stock, images,ratings } = req.body;
-        const sellerId = req.userId; // Assuming userId is set by hasToken middleware
+  try {
+    const { pname, description, price, category, stock, ratings } = req.body;
+    const sellerId = req.userId;
 
-        if (!pname || !description || !price || !category) {
-            return res.status(400).json({
-                success: false,
-                message: "All fields are required",
-            });
-        }
-
-        const newProduct = new productSchema({
-            pname,
-            description,
-            price,
-            category,
-            stock,
-            sellerId,
-            images,
-            ratings
-        });
-
-        await newProduct.save();
-        return res.status(201).json({
-            success: true,
-            message: "Product created successfully",
-            product: newProduct
-        });
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({
-            success: false,
-            message: "Server error",
-        });
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: "Image is required" });
     }
-}
+
+    const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+
+
+    const newProduct = new productSchema({
+      pname,
+      description,
+      price,
+      category,
+      stock,
+      ratings,
+      sellerId,
+       images: imageUrl,
+    });
+
+    await newProduct.save();
+
+    res.status(201).json({
+      success: true,
+      message: "Product created successfully",
+      product: newProduct
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
 
 export const getProducts = async (req, res) => {
     try {

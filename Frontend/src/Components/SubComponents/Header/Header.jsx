@@ -19,7 +19,6 @@ function Header() {
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();
 
-  // Check authentication status on component mount and when localStorage changes
   useEffect(() => {
     const updateUserStatus = () => {
       const token = localStorage.getItem("accessToken");
@@ -28,13 +27,13 @@ function Header() {
       setUserName(name || "");
     };
 
-    // Run on mount
+
     updateUserStatus();
 
-    // Listen for login event
+ 
     window.addEventListener("userLoggedIn", updateUserStatus);
 
-    // Optional: also listen for logout
+ 
     window.addEventListener("userLoggedOut", updateUserStatus);
 
     return () => {
@@ -59,7 +58,7 @@ function Header() {
         await axios.post("http://localhost:8004/user/logout", { email });
       }
 
-      // Clear all user-related data from localStorage
+     
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("fullName");
@@ -71,11 +70,9 @@ function Header() {
       localStorage.clear();
       window.dispatchEvent(new Event("userLoggedOut"));
 
-      // Update state
       setIsLoggedIn(false);
       setUserName("");
 
-      // Show success message
       toast.success("Logged out successfully", {
         position: "top-right",
         autoClose: 3000,
@@ -114,14 +111,14 @@ function Header() {
   return (
     <header className="bg-black text-white sticky top-0 z-50 shadow-md">
       <div className="container mx-auto px-4 py-3">
-        {/* Top Bar */}
+ 
         <div className="flex justify-between items-center">
-          {/* Logo */}
+    
           <Link to="/" className="text-2xl font-bold">
             Priyajit Debnath
           </Link>
 
-          {/* Desktop Navigation */}
+          
           <nav className="hidden md:flex items-center space-x-6">
             <Link to="/" className="hover:text-gray-300 transition-colors">
               Home
@@ -149,7 +146,7 @@ function Header() {
             </Link>
           </nav>
 
-          {/* Icons */}
+   
           <div className="flex items-center space-x-4">
             <div className="hidden md:block relative">
               <form onSubmit={handleSearch} className="flex">
@@ -204,7 +201,7 @@ function Header() {
               )}
             </div>
 
-            {/* Mobile Menu Button */}
+     
             <button
               className="md:hidden focus:outline-none"
               onClick={toggleMenu}
@@ -219,7 +216,7 @@ function Header() {
           </div>
         </div>
 
-        {/* Mobile Search - Visible only on mobile */}
+  
         <div className="mt-3 md:hidden">
           <form onSubmit={handleSearch} className="flex">
             <input
@@ -238,7 +235,6 @@ function Header() {
           </form>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <nav className="md:hidden mt-4 pb-4 space-y-3">
             <Link

@@ -6,7 +6,7 @@ import Header from "../SubComponents/Header/Header";
 import NotFoundPage from "../SubComponents/NoPage/NotFoundPage";
 import ProductComponent from "../SubComponents/Products/ProductComponent";
 import UserRegister from "../SubComponents/Authentication/UserRegister";
-import EmailVerification from "../SubComponents/Authentication/EmailVerification"; // Import the verification component
+import EmailVerification from "../SubComponents/Authentication/EmailVerification"; 
 import UserLogin from "../SubComponents/Authentication/UserLogin";
 import AddProduct from "../SubComponents/Products/AddProduct";
 
@@ -22,7 +22,6 @@ function MotherRoute() {
           <Route path="/register" element={<UserRegister/>} />
           <Route path="/login" element={<UserLogin/>} />
           <Route path="/addproduct" element={<AddProduct/>} />
-          {/* Add this new route for email verification */}
           <Route path="/user/verify/:token" element={<EmailVerification/>} />
         </Routes>
         <Footer />

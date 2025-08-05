@@ -8,7 +8,7 @@ import { FaCheckCircle, FaTimesCircle, FaSpinner } from 'react-icons/fa';
 const EmailVerification = () => {
   const { token } = useParams();
   const navigate = useNavigate();
-  const [verificationStatus, setVerificationStatus] = useState('verifying'); // 'verifying', 'success', 'error'
+  const [verificationStatus, setVerificationStatus] = useState('verifying'); 
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const EmailVerification = () => {
             }
           );
 
-          // Redirect to login after 3 seconds
+          
           setTimeout(() => {
             navigate('/login');
           }, 3000);

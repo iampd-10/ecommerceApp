@@ -58,7 +58,7 @@ const UserRegister = () => {
     try {
       const response = await axios.post('http://localhost:8004/user/register', formData);
       
-      // Show success toast
+      
       toast.success(
         <div className="flex items-center">
           <FaCheck className="text-green-500 mr-2" />
@@ -78,7 +78,6 @@ const UserRegister = () => {
         }
       );
 
-      // Optional: Redirect after successful registration
       setTimeout(() => {
         navigate('/login');
       }, 2000);
@@ -117,7 +116,7 @@ const UserRegister = () => {
         <h2 className="text-2xl font-bold text-center mb-6">Create Your Account</h2>
         
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Full Name */}
+       
           <div>
             <label htmlFor="fullName" className="block text-sm font-medium mb-1 flex items-center">
               <FaUser className="mr-2" /> Full Name
@@ -134,7 +133,7 @@ const UserRegister = () => {
             {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>}
           </div>
 
-          {/* Username */}
+        
           <div>
             <label htmlFor="userName" className="block text-sm font-medium mb-1 flex items-center">
               <FaUserTag className="mr-2" /> Username
@@ -151,7 +150,7 @@ const UserRegister = () => {
             {errors.userName && <p className="text-red-500 text-xs mt-1">{errors.userName}</p>}
           </div>
 
-          {/* Email */}
+        
           <div>
             <label htmlFor="email" className="block text-sm font-medium mb-1 flex items-center">
               <FaEnvelope className="mr-2" /> Email Address
@@ -168,7 +167,7 @@ const UserRegister = () => {
             {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
           </div>
 
-          {/* Password */}
+       
           <div>
             <label htmlFor="password" className="block text-sm font-medium mb-1 flex items-center">
               <FaLock className="mr-2" /> Password
@@ -188,7 +187,7 @@ const UserRegister = () => {
             </p>
           </div>
 
-          {/* Role Selection */}
+          
           <div>
             <label htmlFor="role" className="block text-sm font-medium mb-1">
               Account Type
@@ -205,7 +204,7 @@ const UserRegister = () => {
             </select>
           </div>
 
-          {/* Submit Button */}
+         
           <button
             type="submit"
             disabled={isSubmitting}

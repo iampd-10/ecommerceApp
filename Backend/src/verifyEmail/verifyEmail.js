@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const verifyEmail = async (token, email, fullName, userName, password, role) => {
-  console.log("verifyEmail() called with email:", email); // <-- ADD THIS
+  console.log("verifyEmail() called with email:", email); 
   if (!email) {
     throw new Error("Recipient email is missing.");
   }

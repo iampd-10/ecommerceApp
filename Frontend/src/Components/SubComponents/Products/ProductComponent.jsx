@@ -32,10 +32,9 @@ const ProductComponent = () => {
   }, []);
 
   const handleAddToCart = (productId) => {
-    // Implement your add to cart logic here
+  
     console.log(`Added product ${productId} to cart`);
-    // You might want to use a state management solution like Redux or Context API
-    // for actual cart functionality
+  
   };
 
   if (loading) {
@@ -74,9 +73,9 @@ const ProductComponent = () => {
         {products.map((product) => (
           <div
             key={product._id}
-            className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+            className="bg-white rounded-lg overflow-hidden shadow-md transform transition duration-300 hover:scale-110 hover:shadow-xl"
           >
-            {/* Product Image Placeholder - replace with actual image if available */}
+           
             <div className="bg-gray-200 h-48 flex items-center justify-center">
               {product.images ? (
                 <img

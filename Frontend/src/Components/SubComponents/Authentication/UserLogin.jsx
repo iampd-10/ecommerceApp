@@ -82,7 +82,7 @@ try {
     localStorage.setItem("profilePicture", user.profilePicture || "");
     window.dispatchEvent(new Event("userLoggedIn"));
 
-    // Toast & Redirect
+
     toast.success(
       <div className="flex items-center">
         <FaCheck className="text-green-500 mr-2" />
@@ -169,7 +169,7 @@ try {
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email */}
+       
           <div>
             <label
               htmlFor="email"
@@ -189,7 +189,7 @@ try {
             />
           </div>
 
-          {/* Password */}
+         
           <div>
             <label
               htmlFor="password"
@@ -209,7 +209,7 @@ try {
             />
           </div>
 
-          {/* Forgot Password Link */}
+         
           <div className="text-right">
             <a
               href="/forgot-password"
@@ -219,7 +219,7 @@ try {
             </a>
           </div>
 
-          {/* Submit Button */}
+          
           <button
             type="submit"
             disabled={isSubmitting}

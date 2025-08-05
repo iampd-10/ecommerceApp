@@ -6,13 +6,12 @@ import { RiEmotionSadLine } from 'react-icons/ri';
 function NotFoundPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4 text-center">
-      {/* Illustration & Message */}
+
       <div className="max-w-md mx-auto">
         <div className="relative mb-8">
-          {/* Sad face icon with animation */}
+   
           <RiEmotionSadLine className="text-6xl text-yellow-500 mx-auto animate-bounce" />
-          
-          {/* Broken link illustration */}
+
           <div className="absolute -top-2 -right-2 w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
             <span className="text-2xl">🔗</span>
           </div>
@@ -27,7 +26,7 @@ function NotFoundPage() {
         </p>
       </div>
 
-      {/* Action Buttons */}
+
       <div className="flex flex-wrap justify-center gap-4 mb-12">
         <Link
           to="/"
@@ -51,7 +50,7 @@ function NotFoundPage() {
         </Link>
       </div>
 
-      {/* Additional Help */}
+
       <div className="bg-white p-6 rounded-xl shadow-sm max-w-md w-full border border-gray-100">
         <h3 className="font-medium text-gray-800 mb-3">Need Help?</h3>
         <p className="text-gray-600 mb-4">
@@ -65,7 +64,6 @@ function NotFoundPage() {
         </Link>
       </div>
 
-      {/* Funny 404 Message */}
       <p className="mt-8 text-sm text-gray-500">
         Even the best shoppers get lost sometimes. 🛒
       </p>

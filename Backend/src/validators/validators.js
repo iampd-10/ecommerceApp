@@ -17,7 +17,7 @@ export const userRegistrationSchema = Joi.object({
     "any.required": "Username is required.",
   }),
   email: Joi.string()
-    .email({ tlds: { allow: false } }) // disables strict TLD checking
+    .email({ tlds: { allow: false } }) 
     .required()
     .messages({
       "string.base": "Email must be a string.",

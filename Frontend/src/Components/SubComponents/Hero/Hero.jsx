@@ -55,7 +55,7 @@ function Hero() {
       ref={ref}
       className="relative bg-gradient-to-r from-black to-gray-900 text-white overflow-hidden"
     >
-      {/* Animated background elements */}
+   
       <div className="absolute inset-0 overflow-hidden opacity-20">
         {[...Array(20)].map((_, i) => (
           <motion.div
@@ -89,7 +89,7 @@ function Hero() {
           initial="hidden"
           animate={controls}
         >
-          {/* Content */}
+     
           <div>
             <motion.p 
               className="text-lg md:text-xl text-gray-300 mb-4 font-medium"
@@ -167,13 +167,12 @@ function Hero() {
             </motion.div>
           </div>
 
-          {/* Image/Product showcase */}
           <motion.div 
             className="relative"
             variants={fadeInVariants}
           >
             <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden">
-              {/* Main product image with parallax effect */}
+
               <motion.div 
                 className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center"
                 initial={{ scale: 1.1 }}
@@ -181,7 +180,7 @@ function Hero() {
                 transition={{ duration: 1.5, ease: "easeOut" }}
               />
               
-              {/* Floating product cards */}
+
               <motion.div
                 className="absolute -bottom-6 -left-6 bg-white text-black p-4 rounded-xl shadow-2xl w-32 h-32 flex flex-col justify-center items-center"
                 initial={{ x: -50, y: 50, opacity: 0 }}
@@ -208,7 +207,7 @@ function Hero() {
         </motion.div>
       </div>
 
-      {/* Animated scrolling indicator */}
+
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         animate={{

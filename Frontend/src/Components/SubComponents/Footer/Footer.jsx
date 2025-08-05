@@ -9,7 +9,7 @@ function Footer() {
     <footer className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-white/20 relative z-20">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Website Info */}
+        
           <div className="space-y-4">
             <h2 className="text-2xl font-bold">Priyajit Debnath</h2>
             <p className="text-white/80">
@@ -34,7 +34,7 @@ function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+       
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Quick Links</h3>
             <ul className="space-y-2">
@@ -75,7 +75,7 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
+         
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Contact Us</h3>
             <div className="space-y-2">
@@ -104,7 +104,7 @@ function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
+       
         <div className="mt-12 pt-8 border-t border-white/20 text-center text-white/60">
           <p>&copy; {new Date().getFullYear()} Priyajit Debnath. All rights reserved.</p>
         </div>

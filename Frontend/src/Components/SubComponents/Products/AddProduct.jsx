@@ -58,7 +58,7 @@ const AddProduct = () => {
   };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0]; // single file
+    const file = e.target.files[0]; 
     if (!file) return;
 
     const validTypes = ["image/jpeg", "image/png", "image/jpg"];
@@ -86,52 +86,56 @@ const AddProduct = () => {
     setImagePreview(null);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!validateForm()) return;
+  if (!validateForm()) return;
 
-    const accessToken = localStorage.getItem("accessToken");
-    const role = localStorage.getItem("role");
+  const accessToken = localStorage.getItem("accessToken");
+  const role = localStorage.getItem("role");
 
-    if (role !== "seller") {
-      toast.error("Only sellers can add products");
-      return;
-    }
+  if (role !== "seller") {
+    toast.error("Only sellers can add products");
+    return;
+  }
 
-    setIsSubmitting(true);
+  setIsSubmitting(true);
 
-    try {
-      const form = new FormData();
-      form.append("pname", formData.pname);
-      form.append("description", formData.description);
-      form.append("price", formData.price);
-      form.append("category", formData.category);
-      form.append("stock", formData.stock || 0);
-      form.append("ratings", formData.ratings || 0);
-      form.append("image", image);
-      // single image
+ 
+  const capitalize = (text) =>
+    text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 
-      const response = await axios.post(
-        "http://localhost:8004/product/add",
-        form,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+  try {
+    const form = new FormData();
+    form.append("pname", formData.pname);
+    form.append("description", formData.description);
+    form.append("price", formData.price);
+    form.append("category", capitalize(formData.category)); 
+    form.append("stock", formData.stock || 0);
+    form.append("ratings", formData.ratings || 0);
+    form.append("image", image); 
 
-      toast.success(response.data.message);
-      navigate("/products");
-    } catch (error) {
-      console.error(error);
-      toast.error("Product creation failed");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    const response = await axios.post(
+      "http://localhost:8004/product/add",
+      form,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    toast.success(response.data.message);
+    navigate("/products");
+  } catch (error) {
+    console.error(error);
+    toast.error("Product creation failed");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
@@ -144,7 +148,7 @@ const AddProduct = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Product Name */}
+    
           <div>
             <label htmlFor="pname" className="block text-sm font-medium mb-1">
               Product Name *
@@ -165,7 +169,7 @@ const AddProduct = () => {
             )}
           </div>
 
-          {/* Description */}
+   
           <div>
             <label
               htmlFor="description"
@@ -189,7 +193,7 @@ const AddProduct = () => {
             )}
           </div>
 
-          {/* Price */}
+ 
           <div>
             <label htmlFor="price" className="block text-sm font-medium mb-1">
               Price (₹) *
@@ -212,7 +216,7 @@ const AddProduct = () => {
             )}
           </div>
 
-          {/* Category */}
+  
           <div>
             <label
               htmlFor="category"
@@ -236,7 +240,7 @@ const AddProduct = () => {
             )}
           </div>
 
-          {/* Stock */}
+   
           <div>
             <label htmlFor="stock" className="block text-sm font-medium mb-1">
               Stock (optional)
@@ -258,7 +262,7 @@ const AddProduct = () => {
             )}
           </div>
 
-          {/* Image Upload */}
+  
           <div>
             <label htmlFor="images" className="block text-sm font-medium mb-1">
               Product Images (max 1MB each)
@@ -285,7 +289,7 @@ const AddProduct = () => {
               </label>
             </div>
 
-            {/* Image Previews */}
+
             {imagePreview && (
               <div className="mt-4 relative w-32">
                 <img
@@ -295,7 +299,7 @@ const AddProduct = () => {
                 />
                 <button
                   type="button"
-                  onClick={removeImage} // ✅ use your new single-image function
+                  onClick={removeImage} 
                   className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
                 >
                   <FaTrash className="text-xs" />
@@ -304,7 +308,7 @@ const AddProduct = () => {
             )}
           </div>
 
-          {/* Ratings */}
+         
           <div>
             <label htmlFor="ratings" className="block text-sm font-medium mb-1">
               Ratings (0-5, optional)
@@ -328,7 +332,7 @@ const AddProduct = () => {
             )}
           </div>
 
-          {/* Submit Button */}
+ 
           <div className="pt-4">
             <button
               type="submit"
